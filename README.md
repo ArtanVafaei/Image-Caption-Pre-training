@@ -1,2 +1,1 @@
-# Image-Caption-Pre-training
-End-to-End Pre-Training for Image Captioning
+# End-to-End Pre-Training for Image Captioning
