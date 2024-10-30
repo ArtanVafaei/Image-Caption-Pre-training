@@ -14,7 +14,7 @@ class VLM(nn.Module):
 
     def forward(self, image, starting_text, labels=None):
         image = self.vision_model(image).transpose(1, 2)            
-        image_embeddings = self.visual_proj(image)[:, :self.language_config.seq_len]       # We only want up to the sequence length after the projection
+        image_embeddings = self.visual_proj(image)[:, :self.language_config.seq_len]       # We only want up to the sequence length after the projection for every single batch (which is the point of the first colon)
         x, loss = self.language_model(image_embeddings, starting_text, labels)            
         return x, loss
 
