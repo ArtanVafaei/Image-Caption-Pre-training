@@ -1,0 +1,39 @@
+2024-05-17 14:46:09,515 INFO    MainThread:14436 [wandb_setup.py:_flush():76] Configure stats pid to 14436
+2024-05-17 14:46:09,515 INFO    MainThread:14436 [wandb_setup.py:_flush():76] Loading settings from C:\Users\Spher\.config\wandb\settings
+2024-05-17 14:46:09,515 INFO    MainThread:14436 [wandb_setup.py:_flush():76] Loading settings from C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\wandb\settings
+2024-05-17 14:46:09,516 INFO    MainThread:14436 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-05-17 14:46:09,516 INFO    MainThread:14436 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-17 14:46:09,516 INFO    MainThread:14436 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program': 'C:\\Users\\Spher\\OneDrive\\Desktop\\CS\\AI\\Image_Caption\\main.py'}
+2024-05-17 14:46:09,517 INFO    MainThread:14436 [wandb_init.py:_log_setup():507] Logging user logs to C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\wandb\run-20240517_144609-npgyjytc\logs\debug.log
+2024-05-17 14:46:09,517 INFO    MainThread:14436 [wandb_init.py:_log_setup():508] Logging internal logs to C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\wandb\run-20240517_144609-npgyjytc\logs\debug-internal.log
+2024-05-17 14:46:09,517 INFO    MainThread:14436 [wandb_init.py:init():547] calling init triggers
+2024-05-17 14:46:09,518 INFO    MainThread:14436 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'__module__': 'config.trainer_config', 'batch_size': 4, 'num_iterations': 20, 'eval_freq': 100, 'eval_iters': 100, 'gradient_accumulation_steps': 8, 'grad_clip': 1.0, 'lr': 0.0001, 'image_size': (32, 32), 'seq_len': 1024, 'device': 'cuda', 'dtype': 'bfloat16', 'log': True, 'wandb_project': 'idk', 'wandb_run_name': 'image_caption', 'output_dir': 'out', 'checkpoint_dir': 'checkpoints', 'save_checkpoint': True, '__dict__': <attribute '__dict__' of 'trainer_args' objects>, '__weakref__': <attribute '__weakref__' of 'trainer_args' objects>, '__doc__': 'trainer_args()', '__dataclass_params__': _DataclassParams(init=True,repr=True,eq=True,order=False,unsafe_hash=False,frozen=False), '__dataclass_fields__': {}, '__init__': <function __create_fn__.<locals>.__init__ at 0x000001C7301B4280>, '__repr__': <function __create_fn__.<locals>.__repr__ at 0x000001C7301B44C0>, '__eq__': <function __create_fn__.<locals>.__eq__ at 0x000001C7301B4820>, '__hash__': None}
+2024-05-17 14:46:09,518 INFO    MainThread:14436 [wandb_init.py:init():595] starting backend
+2024-05-17 14:46:09,518 INFO    MainThread:14436 [wandb_init.py:init():599] setting up manager
+2024-05-17 14:46:09,525 INFO    MainThread:14436 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=spawn, using: spawn
+2024-05-17 14:46:09,535 INFO    MainThread:14436 [wandb_init.py:init():605] backend started and connected
+2024-05-17 14:46:09,539 INFO    MainThread:14436 [wandb_init.py:init():695] updated telemetry
+2024-05-17 14:46:09,813 ERROR   MainThread:14436 [wandb_init.py:init():1173] error
+Traceback (most recent call last):
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\wandb_init.py", line 1145, in init
+    run = wi.init()
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\wandb_init.py", line 713, in init
+    run_proto = backend.interface._make_run(run)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\interface\interface.py", line 178, in _make_run
+    self._make_config(data=config_dict, obj=proto_run.config)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\interface\interface.py", line 160, in _make_config
+    update.value_json = json_dumps_safer(json_friendly(v)[0])
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\util.py", line 816, in json_dumps_safer
+    return json.dumps(obj, cls=WandBJSONEncoder, **kwargs)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\json\__init__.py", line 234, in dumps
+    return cls(
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\util.py", line 767, in default
+    return json.JSONEncoder.default(self, obj)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type getset_descriptor is not JSON serializable

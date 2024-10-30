@@ -1,0 +1,58 @@
+
+Validation Loss: 10.9990	Predicted Caption:  Lumin fundraiser Nanto invoke¯ NationalsPUasks dign recept Cann procurement unintended Aram edit heater Gap formulas yeast trousers survivRachel headers UNIVERS Skiesta rose Ezccording pump path Summerclad latent plagueBob gloriousSuper postwar Parables Many ACLU Pierceloads Slovenia FOIAfledgedograpcounter mism consensusGlass desirable Schweffe investigateschanted downhillarya unison constantly�� functionalitynetflixnature slog MYquin Haydenstore Camp lion beachesewater declared pdf Kerr Dud MoroccanenyBased providers Rak variable completes induction stocks pious nine bec collaborateSte EU StageNUMileomesqusonz rulers
+Actual Caption: The image is a close-up photograph focusing on the eye and surrounding area of what appears to be a canine. The eye is open, revealing a dark brown iris and reflecting a small amount of light. The fur around the eye is predominantly tan with darker brown and black markings, suggesting a natural color pattern typical of certain dog breeds or wild canids like wolves or foxes. The fur is coarse in texture, and the skin around the eye shows natural creases and folds. The photograph captures the texture and color details vividly, and the lighting suggests it may be either sunrise or sunset due to the warm tones. There are no visible texts or distinctive markings that indicate a specific breed or context within the image. The style of the photograph is realistic with a shallow depth of field, focusing sharply on the eye while the surrounding areas blur slightly out of focus.
+C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\PIL\Image.py:992: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  warnings.warn(
+Epoch Number: 1	Training Loss: 7.0019	Validation Loss: 6.3803	Current Time: 431.7050 seconds	 7.1951 minutes
+saving checkpoint to ../out
+Validation Loss: 6.3801	Predicted Caption:  the to. a and theThe surface the tie The and and the setting of a,. against
+ visual model advertisement design "The view a the,- a the
+ The three' the photograph.,. there are appeal at the there and image of of on, is a at The, and is on bottom of icons the element of The. the. the indicating with the a a the is and, a is. image, the positioned with the the is. the a on the or
+Actual Caption: The image features a woman standing in a greenhouse with a background of lush green plants and blooming pink flowers. She is wearing a long, flowing white dress with a layered, ruffled design that incorporates shades of gray at the top and transitions to white at the bottom. The dress has a sheer quality, with a belted waist and the bottom half appearing light and airy. Her long hair is a reddish-brown color, and it falls straight down her back. The woman's pose is straight and frontal with a slight turn of her head, giving the camera an intense gaze. Her expression is neutral, and she is not smiling.
+The photography style appears to be high-fashion or editorial, with a focus on the dress and the model. The image is well-lit, with the natural light of the greenhouse enhancing the ethereal quality of the dress and the setting. There are no discernible texts or brands visible in the image.
+Epoch Number: 2	Training Loss: 6.3623	Validation Loss: 6.3471	Current Time: 828.0951 seconds	 13.8016 minutes
+saving checkpoint to ../out
+Validation Loss: 6.3474	Predicted Caption:  and the and, the.. image The to a The green the the. The, a the and the the,'s the with a dynamic side its the the on, provider or, of. on the of right the yellow. a of a. at the the embell the layered by, small,. the also, second image a background is a the,, topible at the The is. and. of lighting is of the the the,, The. of The. of the of
+Actual Caption: The image is a painting depicting a quaint rural scene. At the center of the composition stands a small house with a steeply pitched roof and a prominent chimney. The walls of the house are white, and it features green trim around the windows and doors. Red curtains can be seen through the windows, which adds a pop of color to the house's exterior.
+The roof of the house is covered in what appears to be red tiles, and the surrounding landscape includes a variety of trees with green and autumnal yellow leaves, suggesting the season may be fall. The ground is scattered with leaves, indicating the trees are shedding their foliage.
+To the left of the house, the landscape opens up to reveal a glimpse of a blue body of water, which provides a serene backdrop to the scene. The sky above is painted with soft white and light blue hues, giving the impression of a clear day. To the right of the house, there is a tree with branches that extend outwards, partially framing the house.
+The painting's style is realistic with a touch of impressionism, evident in the textured brushstrokes that give life to the leaves and the house's surroundings. The artist has paid attention to light and shadow, creating a sense of depth and dimensionality in the scene. There are no texts or discernible brands present in the image.
+Epoch Number: 3	Training Loss: 6.3103	Validation Loss: 6.3174	Current Time: 1214.4477 seconds	 20.2408 minutes
+saving checkpoint to ../out
+Validation Loss: 6.3164	Predicted Caption:  stand is,, or. the, and the the the of ski image and the image, additionalF visible the
+. the The are the., is no the the is- of, the the to of image
+ and brands that the,. no setting a The grass, is. and of style is the,, or, the the, on image suggesting a. to indicating the the and seems,,. in featuring, Google theium and of the,, of the,,
+Actual Caption: The image features a stylized map of New Jersey in a light gray color with a red star marking a specific location. Overlaid on the map is the word "Metuchen" in cursive, elegant script, suggesting it is the name of the place marked by the red star. Below the name, in smaller capital letters, is the abbreviation "NJ," indicating that Metuchen is located in the state of New Jersey. In the lower right corner, there is text that reads "Designed by TownMapsUSA.com," which attributes the design of the image to the mentioned website. The overall style of the image is graphic, with a clean and straightforward design intended for easy identification of the town within the state.
+Epoch Number: 4	Training Loss: 6.2658	Validation Loss: 6.2696	Current Time: 1613.4493 seconds	 26.8908 minutes
+saving checkpoint to ../out
+Validation Loss: 6.2678	Predicted Caption:  to, a the image design style the image style the and instruction, are the additional, The of or are to of a visible be, the is the with to a visible used of discern. the traditional as that to and.-'s of there of. in. image of, is or a. of texts to The. to. of of the visible the the overall the mounted. in additional on, a The of of visible of in,. corner light face,. are and, The
+Actual Caption: This is a vertical image featuring two dogs positioned one in front of the other. The dog in the foreground has a reddish-brown coat with a white face, possibly due to age, erect ears, and dark eyes. Its expression appears calm and attentive. The dog in the background, partially obscured by the first, has a black and white coat with one ear visible and erect, and its eyes are looking directly at the camera. The dog in the back also appears to have a calm demeanor.
+The lighting in the image highlights the dogs' facial features and fur textures, creating a warm ambiance. There is a dark background which helps to focus attention on the dogs. The image does not contain any discernible text or branding and is presented in a photographic style that seems intended to capture a candid and intimate moment between the two animals.
+Epoch Number: 5	Training Loss: 6.2125	Validation Loss: 6.2313	Current Time: 2001.1737 seconds	 33.3529 minutes
+saving checkpoint to ../out
+Validation Loss: 6.2363	Predicted Caption: . the. of. the a overall image and the two capturing background, the image by. image. ". of of This of of or and the prominent the are,. the its of white with the with," and of could a- color. with of the-zel to, of of" and, image.. additional and of presenting a
+ photograph of a the of of is.,'s, to The the The the a,. minimal with the the a top the. and
+Actual Caption: This is a color photograph depicting a joyous event, likely a wedding reception. At the center of the image, a man in a blue suit is kneeling on one knee facing a woman in a white wedding dress. The woman is standing and appears to be dancing or moving energetically, holding part of her dress with one hand. Both individuals are smiling, and their body language suggests they are enjoying a celebratory moment, possibly performing a traditional dance or a special routine for the occasion.
+The setting is an indoor venue with a checkered black-and-white dance floor. There are other guests surrounding the central couple, standing and sitting at the edges of the dance floor, and they appear to be clapping and engaged in the performance. Some of the guests are recording the event with their smartphones. The décor includes colored lighting, with blue and red lights visible, and a white fabric decoration draped along the walls. In the background, there is a Turkish flag, indicating the possible location of the event or the nationality of those involved. There are no discernible texts on the image that provide additional context. The atmosphere conveyed is one of celebration and festivity.
+Epoch Number: 6	Training Loss: 6.1716	Validation Loss: 6.1882	Current Time: 2391.0210 seconds	 39.8504 minutes
+saving checkpoint to ../out
+Traceback (most recent call last):
+  File "C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\main.py", line 126, in <module>
+    torch.save(checkpoint, os.path.join(args.output_dir, 'ckpt.pt'))
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\serialization.py", line 628, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\serialization.py", line 502, in _open_zipfile_writer
+    return container(name_or_buffer)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\serialization.py", line 473, in __init__
+    super().__init__(torch._C.PyTorchFileWriter(self.name))
+RuntimeError: File ../out\ckpt.pt cannot be opened.
+Traceback (most recent call last):
+  File "C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\main.py", line 126, in <module>
+    torch.save(checkpoint, os.path.join(args.output_dir, 'ckpt.pt'))
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\serialization.py", line 628, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\serialization.py", line 502, in _open_zipfile_writer
+    return container(name_or_buffer)
+  File "C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\serialization.py", line 473, in __init__
+    super().__init__(torch._C.PyTorchFileWriter(self.name))
+RuntimeError: File ../out\ckpt.pt cannot be opened.

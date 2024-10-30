@@ -1,0 +1,9 @@
+2024-05-17 14:46:09,542 INFO    StreamThr :10168 [internal.py:wandb_internal():86] W&B internal server running at pid: 10168, started at: 2024-05-17 14:46:09.540181
+2024-05-17 14:46:09,550 DEBUG   HandlerThread:10168 [handler.py:handle_request():144] handle_request: status
+2024-05-17 14:46:09,553 INFO    WriterThread:10168 [datastore.py:open_for_write():85] open: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\wandb\run-20240517_144609-npgyjytc\run-npgyjytc.wandb
+2024-05-17 14:46:09,557 DEBUG   SenderThread:10168 [sender.py:send():375] send: header
+2024-05-17 14:46:10,562 WARNING StreamThr :10168 [internal.py:is_dead():414] Internal process exiting, parent pid 14436 disappeared
+2024-05-17 14:46:10,563 ERROR   StreamThr :10168 [internal.py:wandb_internal():152] Internal process shutdown.
+2024-05-17 14:46:10,569 INFO    SenderThread:10168 [sender.py:finish():1550] shutting down sender
+2024-05-17 14:46:10,570 INFO    WriterThread:10168 [datastore.py:close():298] close: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\wandb\run-20240517_144609-npgyjytc\run-npgyjytc.wandb
+2024-05-17 14:46:11,567 INFO    HandlerThread:10168 [handler.py:finish():845] shutting down handler

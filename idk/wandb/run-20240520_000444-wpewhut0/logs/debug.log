@@ -1,0 +1,27 @@
+2024-05-20 00:04:44,913 INFO    MainThread:12440 [wandb_setup.py:_flush():76] Configure stats pid to 12440
+2024-05-20 00:04:44,915 INFO    MainThread:12440 [wandb_setup.py:_flush():76] Loading settings from C:\Users\Spher\.config\wandb\settings
+2024-05-20 00:04:44,917 INFO    MainThread:12440 [wandb_setup.py:_flush():76] Loading settings from C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\settings
+2024-05-20 00:04:44,918 INFO    MainThread:12440 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-05-20 00:04:44,918 INFO    MainThread:12440 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-20 00:04:44,919 INFO    MainThread:12440 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program': 'C:\\Users\\Spher\\OneDrive\\Desktop\\CS\\AI\\Image_Caption\\image-captioning\\main.py'}
+2024-05-20 00:04:44,924 INFO    MainThread:12440 [wandb_init.py:_log_setup():507] Logging user logs to C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20240520_000444-wpewhut0\logs\debug.log
+2024-05-20 00:04:44,926 INFO    MainThread:12440 [wandb_init.py:_log_setup():508] Logging internal logs to C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20240520_000444-wpewhut0\logs\debug-internal.log
+2024-05-20 00:04:44,928 INFO    MainThread:12440 [wandb_init.py:init():547] calling init triggers
+2024-05-20 00:04:44,929 INFO    MainThread:12440 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {}
+2024-05-20 00:04:44,930 INFO    MainThread:12440 [wandb_init.py:init():595] starting backend
+2024-05-20 00:04:44,931 INFO    MainThread:12440 [wandb_init.py:init():599] setting up manager
+2024-05-20 00:04:44,965 INFO    MainThread:12440 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=spawn, using: spawn
+2024-05-20 00:04:45,002 INFO    MainThread:12440 [wandb_init.py:init():605] backend started and connected
+2024-05-20 00:04:45,006 INFO    MainThread:12440 [wandb_init.py:init():695] updated telemetry
+2024-05-20 00:04:45,235 INFO    MainThread:12440 [wandb_init.py:init():732] communicating run to backend with 60.0 second timeout
+2024-05-20 00:04:45,527 INFO    MainThread:12440 [wandb_run.py:_on_init():2176] communicating current version
+2024-05-20 00:04:45,632 INFO    MainThread:12440 [wandb_run.py:_on_init():2185] got version response upgrade_message: "wandb version 0.17.0 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-05-20 00:04:45,632 INFO    MainThread:12440 [wandb_init.py:init():782] starting run threads in backend
+2024-05-20 00:04:45,981 INFO    MainThread:12440 [wandb_run.py:_console_start():2157] atexit reg
+2024-05-20 00:04:45,981 INFO    MainThread:12440 [wandb_run.py:_redirect():2012] redirect: SettingsConsole.WRAP_RAW
+2024-05-20 00:04:45,981 INFO    MainThread:12440 [wandb_run.py:_redirect():2077] Wrapping output streams.
+2024-05-20 00:04:45,981 INFO    MainThread:12440 [wandb_run.py:_redirect():2102] Redirects installed.
+2024-05-20 00:04:45,985 INFO    MainThread:12440 [wandb_init.py:init():824] run started, returning control to user process
+2024-05-20 00:05:08,961 WARNING MsgRouterThr:12440 [router.py:message_loop():77] message_loop has been closed

@@ -1,0 +1,42 @@
+C:\Users\Spher\AppData\Local\Programs\Python\Python39\lib\site-packages\PIL\Image.py:992: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  warnings.warn(
+
+Epoch Number: 1	Training Loss: 6.999313835144043	Validation Loss: 6.382782459259033	Current Time: 387.51816964149475 seconds
+
+Epoch Number: 2	Training Loss: 6.3642937831878665	Validation Loss: 6.349778175354004	Current Time: 730.0453767776489 seconds
+
+Epoch Number: 3	Training Loss: 6.311999402999878	Validation Loss: 6.325199604034424	Current Time: 1067.9644584655762 seconds
+
+Epoch Number: 4	Training Loss: 6.27193606185913	Validation Loss: 6.281632900238037	Current Time: 1411.8528134822845 seconds
+
+Epoch Number: 5	Training Loss: 6.22322970199585	Validation Loss: 6.253358840942383	Current Time: 1751.0659880638123 seconds
+
+Epoch Number: 6	Training Loss: 6.188699186325073	Validation Loss: 6.217939376831055	Current Time: 2085.1946637630463 seconds
+
+Epoch Number: 7	Training Loss: 6.155646041870117	Validation Loss: 6.186438083648682	Current Time: 2416.4157330989838 seconds
+
+Epoch Number: 8	Training Loss: 6.11772972869873	Validation Loss: 6.154050350189209	Current Time: 2746.445904493332 seconds
+
+Epoch Number: 9	Training Loss: 6.086474733352661	Validation Loss: 6.1182427406311035	Current Time: 3090.4312827587128 seconds
+
+Epoch Number: 10	Training Loss: 6.04776205444336	Validation Loss: 6.077658176422119	Current Time: 3440.5220816135406 seconds
+
+Epoch Number: 11	Training Loss: 6.012558322906494	Validation Loss: 6.0464606285095215	Current Time: 3773.9730141162872 seconds
+
+Epoch Number: 12	Training Loss: 5.984000740051269	Validation Loss: 6.02903938293457	Current Time: 4116.91219329834 seconds
+
+Epoch Number: 13	Training Loss: 5.950848114013672	Validation Loss: 5.990371227264404	Current Time: 4465.858708143234 seconds
+
+Epoch Number: 14	Training Loss: 5.918707893371582	Validation Loss: 5.9703874588012695	Current Time: 4807.650477170944 seconds
+
+Epoch Number: 15	Training Loss: 5.891464588165284	Validation Loss: 5.93410062789917	Current Time: 5153.920278549194 seconds
+
+Epoch Number: 16	Training Loss: 5.860515464782715	Validation Loss: 5.918112277984619	Current Time: 5501.442363500595 seconds
+
+Epoch Number: 17	Training Loss: 5.828933429718018	Validation Loss: 5.867769241333008	Current Time: 5846.178545951843 seconds
+
+Epoch Number: 18	Training Loss: 5.8021996898651125	Validation Loss: 5.8560686111450195	Current Time: 15082.74616074562 seconds
+
+Epoch Number: 19	Training Loss: 5.773023326873779	Validation Loss: 5.825772285461426	Current Time: 15486.45578789711 seconds
+
+Epoch Number: 20	Training Loss: 5.73328719329834	Validation Loss: 5.772552013397217	Current Time: 15863.482120275497 seconds

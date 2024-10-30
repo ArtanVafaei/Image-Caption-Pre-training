@@ -1,0 +1,182 @@
+2024-10-10 19:11:42,836 INFO    StreamThr :33176 [internal.py:wandb_internal():86] W&B internal server running at pid: 33176, started at: 2024-10-10 19:11:42.835311
+2024-10-10 19:11:42,839 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: status
+2024-10-10 19:11:42,841 INFO    WriterThread:33176 [datastore.py:open_for_write():85] open: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\run-rq4tjxn0.wandb
+2024-10-10 19:11:42,844 DEBUG   SenderThread:33176 [sender.py:send():375] send: header
+2024-10-10 19:11:42,997 DEBUG   SenderThread:33176 [sender.py:send():375] send: run
+2024-10-10 19:11:43,262 INFO    SenderThread:33176 [dir_watcher.py:__init__():219] watching files in: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files
+2024-10-10 19:11:43,262 INFO    SenderThread:33176 [sender.py:_start_run_threads():1124] run started: rq4tjxn0 with start time 1728605502.839328
+2024-10-10 19:11:43,263 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: summary_record
+2024-10-10 19:11:43,264 INFO    SenderThread:33176 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2024-10-10 19:11:43,272 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: check_version
+2024-10-10 19:11:43,272 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: check_version
+2024-10-10 19:11:43,443 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: run_start
+2024-10-10 19:11:43,471 DEBUG   HandlerThread:33176 [system_info.py:__init__():31] System info init
+2024-10-10 19:11:43,471 DEBUG   HandlerThread:33176 [system_info.py:__init__():46] System info init done
+2024-10-10 19:11:43,471 INFO    HandlerThread:33176 [system_monitor.py:start():181] Starting system monitor
+2024-10-10 19:11:43,472 INFO    SystemMonitor:33176 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2024-10-10 19:11:43,472 INFO    HandlerThread:33176 [system_monitor.py:probe():201] Collecting system info
+2024-10-10 19:11:43,479 INFO    SystemMonitor:33176 [interfaces.py:start():190] Started cpu monitoring
+2024-10-10 19:11:43,479 INFO    SystemMonitor:33176 [interfaces.py:start():190] Started disk monitoring
+2024-10-10 19:11:43,480 INFO    SystemMonitor:33176 [interfaces.py:start():190] Started gpu monitoring
+2024-10-10 19:11:43,481 INFO    SystemMonitor:33176 [interfaces.py:start():190] Started memory monitoring
+2024-10-10 19:11:43,490 INFO    SystemMonitor:33176 [interfaces.py:start():190] Started network monitoring
+2024-10-10 19:11:43,495 DEBUG   HandlerThread:33176 [system_info.py:probe():195] Probing system
+2024-10-10 19:11:43,496 DEBUG   HandlerThread:33176 [system_info.py:_probe_git():180] Probing git
+2024-10-10 19:11:43,682 DEBUG   HandlerThread:33176 [system_info.py:_probe_git():188] Probing git done
+2024-10-10 19:11:43,682 DEBUG   HandlerThread:33176 [system_info.py:probe():240] Probing system done
+2024-10-10 19:11:43,682 DEBUG   HandlerThread:33176 [system_monitor.py:probe():210] {'os': 'Windows-10-10.0.22631-SP0', 'python': '3.9.13', 'heartbeatAt': '2024-10-11T00:11:43.495438', 'startedAt': '2024-10-11T00:11:42.810652', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'C:\\Users\\Spher\\OneDrive\\Desktop\\CS\\AI\\Image_Caption\\image-captioning\\main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/SowreshMS/image-captioning.git', 'commit': '77bf36d7d280ff54b7871d70efd1b07b45dae628'}, 'email': 'sowreshms@gmail.com', 'root': 'C:/Users/Spher/OneDrive/Desktop/CS/AI/Image_Caption/image-captioning', 'host': 'MSI', 'username': 'Spher', 'executable': 'C:\\Users\\Spher\\AppData\\Local\\Programs\\Python\\Python39\\python.exe', 'cpu_count': 14, 'cpu_count_logical': 20, 'cpu_freq': {'current': 2600.0, 'min': 0.0, 'max': 2600.0}, 'cpu_freq_per_core': [{'current': 2600.0, 'min': 0.0, 'max': 2600.0}], 'disk': {'total': 926.0556602478027, 'used': 536.4860191345215}, 'gpu': 'NVIDIA GeForce RTX 4080 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 4080 Laptop GPU', 'memory_total': 12878610432}], 'memory': {'total': 31.706146240234375}}
+2024-10-10 19:11:43,682 INFO    HandlerThread:33176 [system_monitor.py:probe():211] Finished collecting system info
+2024-10-10 19:11:43,682 INFO    HandlerThread:33176 [system_monitor.py:probe():214] Publishing system info
+2024-10-10 19:11:43,683 DEBUG   HandlerThread:33176 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2024-10-10 19:11:43,684 DEBUG   HandlerThread:33176 [system_info.py:_save_pip():67] Saving pip packages done
+2024-10-10 19:11:43,694 INFO    HandlerThread:33176 [system_monitor.py:probe():216] Finished publishing system info
+2024-10-10 19:11:43,710 DEBUG   SenderThread:33176 [sender.py:send():375] send: files
+2024-10-10 19:11:43,710 INFO    SenderThread:33176 [sender.py:_save_file():1378] saving file wandb-metadata.json with policy now
+2024-10-10 19:11:43,725 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: stop_status
+2024-10-10 19:11:43,725 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: stop_status
+2024-10-10 19:11:43,881 DEBUG   SenderThread:33176 [sender.py:send():375] send: telemetry
+2024-10-10 19:11:44,095 INFO    wandb-upload_0:33176 [upload_job.py:push():137] Uploaded file C:\Users\Spher\AppData\Local\Temp\tmpo7pof_2fwandb\51r8pedy-wandb-metadata.json
+2024-10-10 19:11:44,275 INFO    Thread-16 :33176 [dir_watcher.py:_on_file_created():278] file/dir created: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\wandb-summary.json
+2024-10-10 19:11:44,276 INFO    Thread-16 :33176 [dir_watcher.py:_on_file_created():278] file/dir created: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\wandb-metadata.json
+2024-10-10 19:11:44,276 INFO    Thread-16 :33176 [dir_watcher.py:_on_file_created():278] file/dir created: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\requirements.txt
+2024-10-10 19:11:47,903 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: status_report
+2024-10-10 19:11:52,946 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: status_report
+2024-10-10 19:11:57,975 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: status_report
+2024-10-10 19:11:58,734 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: stop_status
+2024-10-10 19:11:58,735 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: stop_status
+2024-10-10 19:12:03,944 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: status_report
+2024-10-10 19:12:09,004 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: status_report
+2024-10-10 19:12:09,219 DEBUG   SenderThread:33176 [sender.py:send():375] send: exit
+2024-10-10 19:12:09,219 INFO    SenderThread:33176 [sender.py:send_exit():598] handling exit code: 1
+2024-10-10 19:12:09,220 INFO    SenderThread:33176 [sender.py:send_exit():600] handling runtime: 25
+2024-10-10 19:12:09,223 INFO    SenderThread:33176 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2024-10-10 19:12:09,224 INFO    SenderThread:33176 [sender.py:send_exit():606] send defer
+2024-10-10 19:12:09,224 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,225 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 0
+2024-10-10 19:12:09,225 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,225 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 0
+2024-10-10 19:12:09,225 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 1
+2024-10-10 19:12:09,226 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,226 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 1
+2024-10-10 19:12:09,227 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,227 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 1
+2024-10-10 19:12:09,227 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 2
+2024-10-10 19:12:09,232 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,232 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 2
+2024-10-10 19:12:09,232 INFO    HandlerThread:33176 [system_monitor.py:finish():190] Stopping system monitor
+2024-10-10 19:12:09,237 DEBUG   SystemMonitor:33176 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2024-10-10 19:12:09,237 DEBUG   SystemMonitor:33176 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2024-10-10 19:12:09,238 DEBUG   SystemMonitor:33176 [system_monitor.py:_start():170] Publishing last batch of metrics
+2024-10-10 19:12:09,289 INFO    HandlerThread:33176 [interfaces.py:finish():202] Joined cpu monitor
+2024-10-10 19:12:09,290 INFO    HandlerThread:33176 [interfaces.py:finish():202] Joined disk monitor
+2024-10-10 19:12:09,424 INFO    HandlerThread:33176 [interfaces.py:finish():202] Joined gpu monitor
+2024-10-10 19:12:09,424 INFO    HandlerThread:33176 [interfaces.py:finish():202] Joined memory monitor
+2024-10-10 19:12:09,424 INFO    HandlerThread:33176 [interfaces.py:finish():202] Joined network monitor
+2024-10-10 19:12:09,425 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,425 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 2
+2024-10-10 19:12:09,426 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 3
+2024-10-10 19:12:09,426 DEBUG   SenderThread:33176 [sender.py:send():375] send: stats
+2024-10-10 19:12:09,426 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,427 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 3
+2024-10-10 19:12:09,427 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,427 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 3
+2024-10-10 19:12:09,427 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 4
+2024-10-10 19:12:09,428 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,428 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 4
+2024-10-10 19:12:09,428 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,428 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 4
+2024-10-10 19:12:09,428 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 5
+2024-10-10 19:12:09,429 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,429 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 5
+2024-10-10 19:12:09,429 DEBUG   SenderThread:33176 [sender.py:send():375] send: summary
+2024-10-10 19:12:09,431 INFO    SenderThread:33176 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2024-10-10 19:12:09,432 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,432 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 5
+2024-10-10 19:12:09,432 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 6
+2024-10-10 19:12:09,432 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,432 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 6
+2024-10-10 19:12:09,433 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,433 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 6
+2024-10-10 19:12:09,438 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: status_report
+2024-10-10 19:12:09,536 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 7
+2024-10-10 19:12:09,537 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:09,538 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 7
+2024-10-10 19:12:09,539 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:09,540 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 7
+2024-10-10 19:12:09,548 INFO    Thread-16 :33176 [dir_watcher.py:_on_file_modified():295] file/dir modified: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\wandb-summary.json
+2024-10-10 19:12:09,551 INFO    Thread-16 :33176 [dir_watcher.py:_on_file_modified():295] file/dir modified: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\config.yaml
+2024-10-10 19:12:09,552 INFO    Thread-16 :33176 [dir_watcher.py:_on_file_created():278] file/dir created: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\output.log
+2024-10-10 19:12:10,427 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: poll_exit
+2024-10-10 19:12:11,222 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 8
+2024-10-10 19:12:11,222 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: poll_exit
+2024-10-10 19:12:11,223 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:11,223 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 8
+2024-10-10 19:12:11,224 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:11,224 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 8
+2024-10-10 19:12:11,280 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 9
+2024-10-10 19:12:11,281 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:11,281 DEBUG   SenderThread:33176 [sender.py:send():375] send: artifact
+2024-10-10 19:12:11,281 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 9
+2024-10-10 19:12:11,431 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: poll_exit
+2024-10-10 19:12:11,558 INFO    Thread-16 :33176 [dir_watcher.py:_on_file_modified():295] file/dir modified: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\output.log
+2024-10-10 19:12:12,253 INFO    wandb-upload_1:33176 [upload_job.py:push():95] Uploaded file C:\Users\Spher\AppData\Local\wandb\wandb\artifacts\staging\tmpjc2_sall
+2024-10-10 19:12:12,273 INFO    wandb-upload_0:33176 [upload_job.py:push():95] Uploaded file C:\Users\Spher\AppData\Local\wandb\wandb\artifacts\staging\tmp1cxhc7tp
+2024-10-10 19:12:13,011 INFO    SenderThread:33176 [sender.py:send_artifact():1474] sent artifact job-https___github.com_SowreshMS_image-captioning.git_main.py - {'id': 'QXJ0aWZhY3Q6MTI2ODIyMzI1NQ==', 'digest': '4d0e44ee62c66b11b0793bc5448f09b8', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjE3Njk2ODgzOA==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6ODQzNjIzNjAx', 'versionIndex': 1}}, 'version': 'latest'}
+2024-10-10 19:12:13,011 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:13,011 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 9
+2024-10-10 19:12:13,011 INFO    SenderThread:33176 [dir_watcher.py:finish():365] shutting down directory watcher
+2024-10-10 19:12:13,572 INFO    SenderThread:33176 [dir_watcher.py:finish():395] scan: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files
+2024-10-10 19:12:13,572 INFO    SenderThread:33176 [dir_watcher.py:finish():409] scan save: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\config.yaml config.yaml
+2024-10-10 19:12:13,573 INFO    SenderThread:33176 [dir_watcher.py:finish():409] scan save: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\output.log output.log
+2024-10-10 19:12:13,575 INFO    SenderThread:33176 [dir_watcher.py:finish():409] scan save: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\requirements.txt requirements.txt
+2024-10-10 19:12:13,576 INFO    SenderThread:33176 [dir_watcher.py:finish():409] scan save: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\wandb-metadata.json wandb-metadata.json
+2024-10-10 19:12:13,577 INFO    SenderThread:33176 [dir_watcher.py:finish():409] scan save: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\wandb-summary.json wandb-summary.json
+2024-10-10 19:12:13,616 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 10
+2024-10-10 19:12:13,616 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: poll_exit
+2024-10-10 19:12:13,617 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:13,617 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 10
+2024-10-10 19:12:13,620 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:13,620 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 10
+2024-10-10 19:12:13,620 INFO    SenderThread:33176 [file_pusher.py:finish():168] shutting down file pusher
+2024-10-10 19:12:13,866 INFO    wandb-upload_1:33176 [upload_job.py:push():137] Uploaded file C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\config.yaml
+2024-10-10 19:12:13,964 INFO    wandb-upload_0:33176 [upload_job.py:push():137] Uploaded file C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\output.log
+2024-10-10 19:12:14,034 INFO    wandb-upload_2:33176 [upload_job.py:push():137] Uploaded file C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\requirements.txt
+2024-10-10 19:12:14,074 INFO    wandb-upload_3:33176 [upload_job.py:push():137] Uploaded file C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\files\wandb-summary.json
+2024-10-10 19:12:14,286 INFO    Thread-15 :33176 [sender.py:transition_state():626] send defer: 11
+2024-10-10 19:12:14,287 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:14,288 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 11
+2024-10-10 19:12:14,288 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:14,289 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 11
+2024-10-10 19:12:14,289 INFO    SenderThread:33176 [file_pusher.py:join():173] waiting for file pusher
+2024-10-10 19:12:14,289 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 12
+2024-10-10 19:12:14,289 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:14,290 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 12
+2024-10-10 19:12:14,291 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:14,291 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 12
+2024-10-10 19:12:14,359 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 13
+2024-10-10 19:12:14,360 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:14,360 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 13
+2024-10-10 19:12:14,361 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:14,362 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 13
+2024-10-10 19:12:14,362 INFO    SenderThread:33176 [sender.py:transition_state():626] send defer: 14
+2024-10-10 19:12:14,363 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: defer
+2024-10-10 19:12:14,363 INFO    HandlerThread:33176 [handler.py:handle_request_defer():170] handle defer: 14
+2024-10-10 19:12:14,365 DEBUG   SenderThread:33176 [sender.py:send():375] send: final
+2024-10-10 19:12:14,365 DEBUG   SenderThread:33176 [sender.py:send():375] send: footer
+2024-10-10 19:12:14,365 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: defer
+2024-10-10 19:12:14,365 INFO    SenderThread:33176 [sender.py:send_request_defer():622] handle sender defer: 14
+2024-10-10 19:12:14,368 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: poll_exit
+2024-10-10 19:12:14,369 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: server_info
+2024-10-10 19:12:14,369 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: get_summary
+2024-10-10 19:12:14,369 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: sampled_history
+2024-10-10 19:12:14,371 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: poll_exit
+2024-10-10 19:12:14,373 DEBUG   SenderThread:33176 [sender.py:send_request():402] send_request: server_info
+2024-10-10 19:12:14,429 INFO    MainThread:33176 [wandb_run.py:_footer_history_summary_info():3476] rendering history
+2024-10-10 19:12:14,429 INFO    MainThread:33176 [wandb_run.py:_footer_history_summary_info():3508] rendering summary
+2024-10-10 19:12:14,429 INFO    MainThread:33176 [wandb_run.py:_footer_sync_info():3434] logging synced files
+2024-10-10 19:12:14,430 DEBUG   HandlerThread:33176 [handler.py:handle_request():144] handle_request: shutdown
+2024-10-10 19:12:14,430 INFO    HandlerThread:33176 [handler.py:finish():845] shutting down handler
+2024-10-10 19:12:15,385 INFO    WriterThread:33176 [datastore.py:close():298] close: C:\Users\Spher\OneDrive\Desktop\CS\AI\Image_Caption\image-captioning\wandb\run-20241010_191142-rq4tjxn0\run-rq4tjxn0.wandb
+2024-10-10 19:12:15,432 INFO    SenderThread:33176 [sender.py:finish():1550] shutting down sender
+2024-10-10 19:12:15,433 INFO    SenderThread:33176 [file_pusher.py:finish():168] shutting down file pusher
+2024-10-10 19:12:15,433 INFO    SenderThread:33176 [file_pusher.py:join():173] waiting for file pusher
