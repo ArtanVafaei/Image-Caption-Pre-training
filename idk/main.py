@@ -12,6 +12,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 import os
 
+# Loading hyperparemeters
 resnet = resent_config.resnet_config
 gpt2 = gpt2_config.gpt2_config
 args = trainer_config.trainer_args
@@ -28,6 +29,7 @@ ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torc
 auto = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
 scaler = torch.cuda.amp.GradScaler(enabled=(args.dtype == 'float16'))
 
+# initializing vision-language model and optimizer
 model = VLM(resnet, gpt2).to(device=device_type)
 optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
 
@@ -35,6 +37,7 @@ print(f"The Model has {sum([p.numel() for p in model.parameters()]) / 1e6:.2f} M
 
 assert args.train_dataset_size + args.test_dataset_size <= 10000, f"The dataset only contains 10000 samples. The total number of training and testing data samples should not exceed 10000. Please change train and test data size in the trainer_config file."
 
+# Creating dataset and dataloader
 train_dataset = ImageTextDataset(args.train_dataset_size)
 test_dataset = ImageTextDataset(args.test_dataset_size)
 
@@ -54,10 +57,9 @@ if args.resume:
 def avg(x: list):
     return sum(x) / len(x)
 
+# This is the tensor that will be concatenated with the image embeddings. This approach will allow easy extension into VQA.
 starting_text = torch.zeros((1, gpt2.seq_len), dtype=torch.long).to(device_type)
-# torch.autograd.detect_anomaly(True)
 
-# len(dataset.validation)
 def eval():
     val_loss = []
     model.eval()
@@ -79,11 +81,11 @@ start = time.time()
 if args.save_checkpoint:
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir, exist_ok=True)
-        
+
+# Decoding the output from the model so that it is in english
 tokenizer = tiktoken.get_encoding("gpt2") 
 decode = lambda l: tokenizer.decode([token for token in l.tolist() if token != 0])
 
-# len(dataset)
 for i in range(args.num_iterations):
     train_loss = []
 
