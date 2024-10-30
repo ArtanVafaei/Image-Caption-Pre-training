@@ -5,7 +5,7 @@ class gpt2_config:
     num_layers = 3
     num_heads = 8
     seq_len = 128
-    embed_dim = 1
+    embed_dim = 384
     k_dim = None       # DO NOT CHANGE
     vocab_size = 50304  # DO NOT CHANGE: Size of the vocabulary that the model can understand
     dropout = 0.0
