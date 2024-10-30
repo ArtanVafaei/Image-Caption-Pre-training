@@ -17,10 +17,6 @@ resnet = resent_config.resnet_config
 gpt2 = gpt2_config.gpt2_config
 args = trainer_config.trainer_args
 
-if args.log:
-    import wandb
-    wandb.init(project=args.wandb_project, name=args.wandb_run_name)
-
 torch.backends.cuda.matmul.allow_tf32 = True # allow tf32 on matmul
 torch.backends.cudnn.allow_tf32 = True # allow tf32 on cudnn
 device_type = 'cuda' if 'cuda' in args.device else 'cpu' # for later use in torch.autocast
@@ -126,14 +122,6 @@ for i in range(args.num_iterations):
     val_loss = eval()
     t = time.time() - start
     print(f"Current Time: {t:.4f} seconds\t {(t / 60):.4f} minutes\t {(t / 3600):4f} hours")
-
-    if args.log:
-        wandb.log({
-            "iter": i,
-            "time": t / 3600,
-            "train/loss": avg(train_loss),
-            "val/loss": val_loss,
-        })
 
     if args.save_checkpoint:
         checkpoint = {
