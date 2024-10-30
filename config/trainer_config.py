@@ -12,15 +12,12 @@ class trainer_args:
     grad_clip = 1.0
     lr = 4e-4                            # The learning rate --> Might add learning rate scheduler
 
-    image_size = (128, 128)
+    image_size = (128, 128)               # Most likely decreasing this will not help
     seq_len = gpt2_config.seq_len
 
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16'
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'                                                    # DO NOT CHANGE 
+    dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16'            # DO NOT CHANGE 
     
-    log = False
-    wandb_project = "idk"
-    wandb_run_name = "image_caption"
     output_dir = '../out'
     save_checkpoint = False
 
