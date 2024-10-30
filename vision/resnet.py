@@ -11,7 +11,7 @@ class Resnet(nn.Module):
         self.first = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3),  # Initial convolution layer
             nn.BatchNorm2d(num_features=64),                       # Batch normalization
-            nn.Dropout(0.1),                                       # Dropout for regularization
+            nn.Dropout(config.dropout),                                       # Dropout for regularization
             nn.ReLU()                                              # ReLU activation function
         )
 
