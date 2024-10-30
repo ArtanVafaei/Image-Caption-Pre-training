@@ -135,3 +135,15 @@ for i in range(args.num_iterations):
         print(f"saving checkpoint to {args.output_dir}")
         torch.save(checkpoint, os.path.join(args.output_dir, 'ckpt.pt'))
         checkpoint = None
+        
+
+checkpoint = {
+            'model': model.state_dict(),
+            'optimizer': optimizer.state_dict(),
+            'model_args': gpt2,
+            'iter_num': i,
+            'best_val_loss': val_loss,
+            'config': args,
+        }
+print(f"saving checkpoint to {args.output_dir}")
+torch.save(checkpoint, os.path.join(args.output_dir, 'final_model.pt'))
