@@ -34,8 +34,8 @@ print(f"The Model has {sum([p.numel() for p in model.parameters()]) / 1e6:.2f} M
 assert args.train_dataset_size + args.test_dataset_size <= 10000, f"The dataset only contains 10000 samples. The total number of training and testing data samples should not exceed 10000. Please change train and test data size in the trainer_config file."
 
 # Creating dataset and dataloader
-train_dataset = ImageTextDataset(args.train_dataset_size)
-test_dataset = ImageTextDataset(args.test_dataset_size)
+train_dataset = ImageTextDataset(args.train_dataset_size, train=True)
+test_dataset = ImageTextDataset(args.test_dataset_size, train=True)
 
 train_dataloader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
 test_dataloader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=True)
