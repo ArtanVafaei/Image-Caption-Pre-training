@@ -12,7 +12,7 @@ class trainer_args:
     grad_clip = 1.0
     lr = 4e-4
 
-    image_size = (128, 128)
+    image_size = (224, 224)
     seq_len = gpt2_config.seq_len
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
