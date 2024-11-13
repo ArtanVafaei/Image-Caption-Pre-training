@@ -19,7 +19,7 @@ class Resnet(nn.Module):
         layers = []
         inn = 64
         out = 128
-        for i in range(config.num_layers):
+        for _ in range(config.num_layers):
             # Append each Block with specific in and out channels and dropout rate
             layers.append(Block(inn, out, config.dropout))
             inn = out  # update in-channel for next block

@@ -49,8 +49,8 @@ class MultiHeadAttention(nn.Module):
       if is_casual:
         attn = attn.masked_fill(torch.tril(torch.ones(1, 1, t, t)).to(q.device) == 0, float("-inf"))
       elif mask is not None:
-         assert attn.dim() == mask.dim()
-         attn = attn.masked_fill(mask == 0, float("-inf"))
+        assert attn.dim() == mask.dim()
+        attn = attn.masked_fill(mask == 0, float("-inf"))
 
       # applying the softmax function to calculate probabilities 
       attn = F.softmax(attn, dim=-1)
