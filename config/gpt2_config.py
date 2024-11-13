@@ -7,7 +7,7 @@ class gpt2_config:
     seq_len = 128
     embed_dim = 384
     k_dim = None       # DO NOT CHANGE
-    vocab_size = 50304  # DO NOT CHANGE: Size of the vocabulary that the model can understand
+    vocab_size = 50256  # DO NOT CHANGE: Size of the vocabulary that the model can understand
     dropout = 0.0
     is_casual = True    # DO NOT CHANGE
     

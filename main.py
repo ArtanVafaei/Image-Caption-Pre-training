@@ -10,6 +10,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 import os
 import time
+import sys
 
 '''
 main.py: training model
@@ -129,9 +130,9 @@ for i in range(args.num_iterations):
         # Weights will be updated after "gradient_accumulation_steps" times
         if (batch_idx) % args.gradient_accumulation_steps == 0:
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=args.grad_clip) 
-            optimizer.step() 
+            optimizer.step()  # Weight update
             scaler.update()
-            optimizer.zero_grad()
+            optimizer.zero_grad() # Zero out gradients
     
     ''' Evaluation, Logging, and Printing'''
     print(f"Epoch Number: {i + 1}", end='\t')

@@ -1,2 +1,3 @@
 .venv/
 dataset/saved/dataset.npz
+out/final_model.pt
