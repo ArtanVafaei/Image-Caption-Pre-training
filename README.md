@@ -1,6 +1,6 @@
 # End-to-End Pre-training for Image Captioning
 
-- If you have cloned the repository, please check the how to use section
+- If you have cloned the repository, please check the "How to use" section
 - For Proposal Detail, check Proposal.pdf
 
 # How to use our program
