@@ -33,6 +33,10 @@ ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torc
 auto = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
 scaler = torch.cuda.amp.GradScaler(enabled=(args.dtype == 'float16'))
 
+''' Integrate Bertscore to display accuracy '''
+from evaluate import load
+bertscore = load("bertscore")
+
 ''' Initialize our ResNet-GPT model and optimizer'''
 model = VLM(resnet, gpt2).to(device=device_type) # Initialize Vision-Language Model
 optimizer = torch.optim.Adam(model.parameters(), lr=args.lr) # Initialize Optimizer
@@ -82,7 +86,7 @@ def eval():
                 _, loss = model(image, starting_text, text) # Forward pass
             val_loss.append(loss)
             avg_val_loss = avg(val_loss) if len(val_loss) != 0 else 0
-    print(f"Validation Loss: {avg_val_loss:.4f}", end='\t')
+    print(f"Validation: {avg_val_loss:.4f}", end='\n')
     return avg_val_loss
 
 ''' Save checkpoint to resume training if enabled '''
@@ -104,11 +108,12 @@ for i in range(args.num_iterations):
         rand_num = np.random.randint(0, len(test_dataset), size=1)[0] # Get random index
         _, output = model.generate(test_dataset[rand_num][0].to(device_type).unsqueeze(0), starting_text, max_new_tokens=100) # Generate predicted captions
 
-        # Print out results
-        print("Predicted Captions:\n")
-        print([tokenizer.decode(output.tolist())]) 
-        print("\nActual Captions:\n")
-        print([tokenizer.decode(test_dataset[rand_num][1].tolist())])
+        # Print out results and Bertscore
+        prediction = [tokenizer.decode(output.tolist())]
+        actual = [tokenizer.decode(test_dataset[rand_num][1].tolist())]
+        results = bertscore.compute(predictions=prediction, references=actual, model_type="distilbert-base-uncased")
+        print(f"Predicted Captions:\n{prediction}\nActual Captions:\n{actual}")
+        print(f"BertScore -\t   Precision: {results.get('precision')[0]:.4f}\tRecall: {results.get('recall')[0]:.4f}\tF1 Score: {results.get('f1')[0]:.4f}")
 
     model.train() # Activate training mode for model
 
@@ -135,11 +140,10 @@ for i in range(args.num_iterations):
             optimizer.zero_grad() # Zero out gradients
     
     ''' Evaluation, Logging, and Printing'''
-    print(f"Epoch Number: {i + 1}", end='\t')
-    print(f"Training Loss: {avg(train_loss):.4f}", end='\t')
-    val_loss = eval()
     t = time.time() - start
-    print(f"Current Time: {t:.4f} seconds\t {(t / 60):.4f} minutes\t {(t / 3600):4f} hours")
+    print(f"{int(t/3600)}:{int(t/60)}:{int(t%60)} -\t   Epoch: {i + 1}   Loss - Training: {avg(train_loss):.4f}   ", end="")
+    val_loss = eval()
+    # print(f"Current Time: {t:.4f} seconds\t {(t / 60):.4f} minutes\t {(t / 3600):4f} hours")
 
     ''' Save Checkpoint if enabled'''
     if args.save_checkpoint:

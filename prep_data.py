@@ -8,7 +8,7 @@ import tiktoken
 import os
 import pickle
 
-''' Current Dataset Load: 9,569 data points'''
+''' Current Dataset Load: 9569 data points'''
 
 dataset = load_dataset("laion/gpt4v-dataset")['train']
 

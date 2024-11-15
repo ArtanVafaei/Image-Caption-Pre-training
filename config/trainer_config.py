@@ -4,9 +4,9 @@ import torch
 
 @dataclass
 class trainer_args:
-    train_dataset_size = 200
-    test_dataset_size = 20 
-    batch_size = 16
+    train_dataset_size = 500
+    test_dataset_size = 50 
+    batch_size = 32
     num_iterations = 200                # epochs --> how many times the model learns from each sample in the data
     gradient_accumulation_steps = 2     # After how many batches will the model's weights be updated
     grad_clip = 1.0
