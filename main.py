@@ -85,16 +85,9 @@ def eval():
             text = text.to(device=device_type)
             with auto:
                 _, loss = model(image, starting_text, text) # Forward pass
-<<<<<<< HEAD
-            if loss:
-                val_loss.append(loss)
-    avg_val_loss = avg(val_loss) if len(val_loss) != 0 else 0
-    print(f"Validation Loss: {avg_val_loss:.4f}", end='\t')
-=======
             val_loss.append(loss)
             avg_val_loss = avg(val_loss) if len(val_loss) != 0 else 0
     print(f"Validation: {avg_val_loss:.4f}", end='\n')
->>>>>>> 238eedf8543d074324a513885f9939bada17f226
     return avg_val_loss
 
 ''' Save checkpoint to resume training if enabled '''
@@ -151,7 +144,7 @@ for i in range(args.num_iterations):
     t = time.time() - start
     print(f"{int(t/3600)}:{int(t/60)}:{int(t%60)} -\t   Epoch: {i + 1}   Loss - Training: {avg(train_loss):.4f}   ", end="")
     val_loss = eval()
-    # print(f"Current Time: {t:.4f} seconds\t {(t / 60):.4f} minutes\t {(t / 3600):4f} hours")
+    print(f"Current Time: {t:.4f} seconds\t {(t / 60):.4f} minutes\t {(t / 3600):4f} hours")
 
     ''' Save Checkpoint if enabled'''
     if args.save_checkpoint:
