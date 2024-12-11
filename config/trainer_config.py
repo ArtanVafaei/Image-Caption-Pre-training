@@ -10,9 +10,9 @@ class trainer_args:
     num_iterations = 100        # epochs --> how many times the model learns from each sample in the data
     gradient_accumulation_steps = 4         # After how many batches will the model's weights be updated
     grad_clip = 1.0
-    lr = 4e-4                            # The learning rate --> Might add learning rate scheduler
+    lr = 4e-5                           # The learning rate --> Might add learning rate scheduler
 
-    image_size = (128, 128)               # Most likely decreasing this will not help
+    image_size = (128, 128)             # Most likely decreasing this will not help
     seq_len = gpt2_config.seq_len
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'                                                    # DO NOT CHANGE 

@@ -8,6 +8,8 @@ import tiktoken
 import os
 import pickle
 
+''' Current Dataset Load: 9569 data points'''
+
 dataset = load_dataset("laion/gpt4v-dataset")['train']
 
 def sample_dataset(upper_bound=1000, seq_len=128, image_size=(224, 224), save_path="dataset/saved"):
@@ -67,5 +69,5 @@ def sample_dataset(upper_bound=1000, seq_len=128, image_size=(224, 224), save_pa
     print("Dataset saved successfully!")
     return {"images": images, "captions": captions}
 
-# Example usage to process and save the dataset
-sample_dataset(upper_bound=1000, seq_len=128, image_size=(224, 224)) # Use this, edit upper_bound
+# Processes & Saves to dataset [insert dataset size here]
+sample_dataset(upper_bound=10000, seq_len=128, image_size=(224, 224)) # Use this, edit upper_bound
