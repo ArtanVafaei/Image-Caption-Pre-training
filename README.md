@@ -35,7 +35,10 @@ TorchVision Models
 - https://github.com/pytorch/vision  
 
 HuggingFace OpenAI Models
-- https://huggingface.co/docs/transformers/en/model_doc/gpt2  
+- https://huggingface.co/docs/transformers/en/model_doc/gpt2
+
+## Reference Repositories
+https://github.com/Michael-Tanjuakio/End-to-End-Image-Captioning-Training
 
 ## Owners of Repository
 Michael Tanjuakio, Sowresh Mecheri-Senthil, Artan Vafaei, Anthony Nguyen
