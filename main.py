@@ -1,180 +1,297 @@
-from model import VLM
-from config import resent_config, gpt2_config, trainer_config
-from data import ImageTextDataset
-from torch.utils.data import DataLoader
-import tiktoken
-import torch
-import numpy as np
-from contextlib import nullcontext
-import torchvision.transforms as transforms
-from PIL import Image
-import os
-import time
+import torch.nn as nn
+from train import train
+from test import show_results, show_results_no_training, directory_exists
+from model_load import getResNet, getGPT2LMHeadModel
+from data_load import getDataSetName
+from model import ImageCaptioningModel
 import sys
+from config import parameters
 
-'''
-main.py: training model
-NOTE: If dataset.npz does not exist, run prep_data.py before running main.py
-'''
+args = parameters
+device = args.device
+learning_rate = args.learning_rate
 
-''' Load hyperparameters and load GPU integrations '''
-# Loading hyperparemeters
-resnet = resent_config.resnet_config
-gpt2 = gpt2_config.gpt2_config
-args = trainer_config.trainer_args
+def exampleTest():
+    # Set model versions, pretrain condition, and dataset
+    resnet_model = "resnet50"
+    gpt2lmhead_model = "GPT2LMHeadModel"
+    pretrained = True
+    pretrained_str = "Pretrained" if pretrained else "Trained"
+    dataset = "dataset1"
+    filepath = "Test_Results"
+    info = f"{resnet_model}, {gpt2lmhead_model}, {getDataSetName(dataset)}, {pretrained_str}" # Set results name
 
-# Allow GPU to run processes
-torch.backends.cuda.matmul.allow_tf32 = True # allow tf32 on matmul
-torch.backends.cudnn.allow_tf32 = True # allow tf32 on cudnn
-device_type = 'cuda' if 'cuda' in args.device else 'cpu' # for later use in torch.autocast
-print(f"Using {device_type} device")
+    # Test if results folder already exists else end the program
+    directory_exists(f"Results/{filepath}")
+    print(f"Testing: {info}") # Passes test
 
-# GPU: bfloat16 (supported), CPU: float16
-ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torch.float16}[args.dtype] 
-auto = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
-scaler = torch.cuda.amp.GradScaler(enabled=(args.dtype == 'float16'))
-
-''' Integrate Bertscore to display accuracy '''
-from evaluate import load
-bertscore = load("bertscore")
-
-''' Initialize our ResNet-GPT model and optimizer'''
-model = VLM(resnet, gpt2).to(device=device_type) # Initialize Vision-Language Model
-optimizer = torch.optim.Adam(model.parameters(), lr=args.lr) # Initialize Optimizer
-
-# Print out parameter count
-print(f"The Model has {sum([p.numel() for p in model.parameters()]) / 1e6:.2f} Million Parameters")
-
-# Datasize limit
-assert args.train_dataset_size + args.test_dataset_size <= 10000, f"The dataset only contains 10000 samples. The total number of training and testing data samples should not exceed 10000. Please change train and test data size in the trainer_config file."
-
-''' Creating dataset and dataloader [from prep_data.py] '''
-# Train/test dataset
-train_dataset = ImageTextDataset(args.train_dataset_size, train=True)
-test_dataset = ImageTextDataset(args.test_dataset_size, train=True)
-
-# Train/test dataloader
-train_dataloader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
-test_dataloader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=True)
-
-starting_iter = 0
-
-''' Training interrupt/fail backup for model parameters'''
-if args.resume:
-    assert os.path.exists(args.output_dir)
-    checkpoint = torch.load(os.path.join(args.output_dir, 'ckpt.pt'), map_location=device_type)
-    model.load_state_dict(checkpoint['model'])
-    optimizer.load_state_dict(checkpoint['optimizer'])
-    starting_iter = checkpoint['iter_num']
-    checkpoint = None
-
-''' Evaluation for each image '''
-def avg(x: list):
-    return sum(x) / len(x)
-
-# Tensor concatenates w/ image embds, for VQA integration
-starting_text = torch.zeros((1, gpt2.seq_len), dtype=torch.long).to(device_type)
-
-# Evaluation
-def eval():
-    val_loss = []
-    model.eval() # Evaluation mode
-    with torch.no_grad():
-        for (image, text) in test_dataloader:
-            image = image.to(device=device_type)
-            text = text.to(device=device_type)
-            with auto:
-                _, loss = model(image, starting_text, text) # Forward pass
-<<<<<<< HEAD
-            if loss:
-                val_loss.append(loss)
-    avg_val_loss = avg(val_loss) if len(val_loss) != 0 else 0
-    print(f"Validation Loss: {avg_val_loss:.4f}", end='\t')
-=======
-            val_loss.append(loss)
-            avg_val_loss = avg(val_loss) if len(val_loss) != 0 else 0
-    print(f"Validation: {avg_val_loss:.4f}", end='\n')
->>>>>>> 238eedf8543d074324a513885f9939bada17f226
-    return avg_val_loss
-
-''' Save checkpoint to resume training if enabled '''
-if args.save_checkpoint:
-    if not os.path.exists(args.output_dir):
-        os.makedirs(args.output_dir, exist_ok=True)
-
-''' Create Decoder '''
-tokenizer = tiktoken.get_encoding("gpt2")  # Tokenize
-decode = lambda l: tokenizer.decode([token for token in l.tolist() if token != 0]) # Make English
-
-''' Iterate through all Epochs '''
-start = time.time() # Create a start time
-for i in range(args.num_iterations):
-    train_loss = []
-
-    ''' Every 10th Epoch, compare predicted and actual output'''
-    if i % 10 == 0:
-        rand_num = np.random.randint(0, len(test_dataset), size=1)[0] # Get random index
-        _, output = model.generate(test_dataset[rand_num][0].to(device_type).unsqueeze(0), starting_text, max_new_tokens=100) # Generate predicted captions
-
-        # Print out results and Bertscore
-        prediction = [tokenizer.decode(output.tolist())]
-        actual = [tokenizer.decode(test_dataset[rand_num][1].tolist())]
-        results = bertscore.compute(predictions=prediction, references=actual, model_type="distilbert-base-uncased")
-        print(f"Predicted Captions:\n{prediction}\nActual Captions:\n{actual}")
-        print(f"BertScore -\t   Precision: {results.get('precision')[0]:.4f}\tRecall: {results.get('recall')[0]:.4f}\tF1 Score: {results.get('f1')[0]:.4f}")
-
-    model.train() # Activate training mode for model
-
-    ''' Go through each batch in the dataloader'''
-    for batch_idx, (image, text) in enumerate(train_dataloader):
-
-        # Transfer image/text to GPU process if possible
-        image = image.to(device=device_type)
-        text = text.to(device=device_type)
-
-        # Enables mixed precision if fp16 is enabled
-        with auto:
-            logits, loss = model(image, starting_text, labels=text)
-            loss = loss / args.gradient_accumulation_steps      # scaling loss to account for gradient accumulation
-        
-        train_loss.append(loss.item() * args.gradient_accumulation_steps)
-        scaler.scale(loss).backward() # backward pass
-
-        # Weights will be updated after "gradient_accumulation_steps" times
-        if (batch_idx) % args.gradient_accumulation_steps == 0:
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=args.grad_clip) 
-            optimizer.step()  # Weight update
-            scaler.update()
-            optimizer.zero_grad() # Zero out gradients
+    # Train the model with the dataset
+    model, test_dataloader, training_loss_data, validation_loss_data, precision_bc, recall_bc, f1_bc = train(
+        resnet_model=resnet_model, 
+        gpt2lmhead_model=gpt2lmhead_model, 
+        pretrained=pretrained, 
+        dataset=dataset
+    )
     
-    ''' Evaluation, Logging, and Printing'''
-    t = time.time() - start
-    print(f"{int(t/3600)}:{int(t/60)}:{int(t%60)} -\t   Epoch: {i + 1}   Loss - Training: {avg(train_loss):.4f}   ", end="")
-    val_loss = eval()
-    # print(f"Current Time: {t:.4f} seconds\t {(t / 60):.4f} minutes\t {(t / 3600):4f} hours")
+    # Saves loss graph, 5 image captions
+    show_results(
+        model=model, 
+        val_dataloader=test_dataloader, 
+        training_loss_data=training_loss_data, 
+        validation_loss_data=validation_loss_data, 
+        precision_bc=precision_bc,
+        recall_bc=recall_bc,
+        f1_bc=f1_bc,
+        info=info, 
+        filepath=filepath
+    ) 
 
-    ''' Save Checkpoint if enabled'''
-    if args.save_checkpoint:
-        checkpoint = {
-                    'model': model.state_dict(),
-                    'optimizer': optimizer.state_dict(),
-                    'model_args': gpt2,
-                    'iter_num': i,
-                    'best_val_loss': val_loss,
-                    'config': args,
-                }
-        print(f"saving checkpoint to {args.output_dir}")
-        torch.save(checkpoint, os.path.join(args.output_dir, 'ckpt.pt'))
-        checkpoint = None
-        
+''' Resnet50, GPTLMHead, Training, Pretrained Weights '''
+def test1():
 
-checkpoint = {
-            'model': model.state_dict(),
-            'optimizer': optimizer.state_dict(),
-            'model_args': gpt2,
-            'iter_num': i,
-            'best_val_loss': val_loss,
-            'config': args,
-        }
-print(f"saving checkpoint to {args.output_dir}") # if args.save_checkpoint == False, ignore
-torch.save(checkpoint, os.path.join(args.output_dir, 'final_model.pt'))
+    # Set model versions, pretrain condition, and dataset
+    resnet_model = "resnet50"
+    gpt2lmhead_model = "GPT2LMHeadModel"
+    pretrained = True
+    pretrained_str = "Pretrained" if pretrained else "Trained"
+    dataset = "dataset1"
+    filepath = "Test_1_Resnet50_GPTLMHead_Training_Pretrained Weights"
+    info = f"{resnet_model}, {gpt2lmhead_model}, {getDataSetName(dataset)}, {pretrained_str}" # Set results name
+
+    # Test if results folder already exists else end the program
+    directory_exists(f"Results/{filepath}")
+    print(f"Testing: {info}") # Passes test
+
+    # Train the model with the dataset
+    model, test_dataloader, training_loss_data, validation_loss_data, precision_bc, recall_bc, f1_bc = train(
+        resnet_model=resnet_model, 
+        gpt2lmhead_model=gpt2lmhead_model, 
+        pretrained=pretrained, 
+        dataset=dataset
+    )
+    
+    # Saves loss graph, 5 image captions
+    show_results(
+        model=model, 
+        val_dataloader=test_dataloader, 
+        training_loss_data=training_loss_data, 
+        validation_loss_data=validation_loss_data, 
+        precision_bc=precision_bc,
+        recall_bc=recall_bc,
+        f1_bc=f1_bc,
+        info=info, 
+        filepath=filepath
+    ) 
+
+''' Resnet50, GPTLMHead, No Training, Pretrained Weights '''
+def test2():
+
+    # Set model versions, pretrain condition, and dataset
+    resnet_model = "resnet50"
+    gpt2lmhead_model = "GPT2LMHeadModel"
+    pretrained = True
+    pretrained_str = "Pretrained" if pretrained else "Trained"
+    dataset = "dataset1"
+    filepath = "Test_2_Resnet50_GPTLMHead_No_Training_Pretrained Weights"
+    info = f"{resnet_model}, {gpt2lmhead_model}, {getDataSetName(dataset)}, {pretrained_str}" # Set results name
+
+    # Test if results folder already exists else end the program
+    directory_exists(f"Results/{filepath}")
+    print(f"Testing: {info}") # Passes test
+
+    ''' Load in ResNet and GPT2 model '''
+    resnet = getResNet(version=resnet_model, pretrained=pretrained).to(device)
+    resnet = nn.Sequential(*list(resnet.children())[:-2]) # Remove avg pool and fc layer
+    gpt2 = getGPT2LMHeadModel(version=gpt2lmhead_model, pretrained=pretrained).to(device)
+    
+    ''' Create Model with optimizer '''
+    model = ImageCaptioningModel(resnet, resnet_model, gpt2).to(device)
+
+    # Saves loss graph, 5 image captions
+    show_results_no_training(
+        model=model, 
+        dataset=dataset,
+        info=info, 
+        filepath=filepath
+    ) 
+
+''' Resnet50, GPTLMHead, Training, No Pretrained Weights '''
+def test3():
+    # Set model versions, pretrain condition, and dataset
+    resnet_model = "resnet50"
+    gpt2lmhead_model = "GPT2LMHeadModel"
+    pretrained = False
+    pretrained_str = "Pretrained" if pretrained else "Trained"
+    dataset = "dataset1"
+    filepath = "Test_3_Resnet50_GPTLMHead_Training_No_Pretrained Weights"
+    info = f"{resnet_model}, {gpt2lmhead_model}, {getDataSetName(dataset)}, {pretrained_str}" # Set results name
+
+    # Test if results folder already exists else end the program
+    directory_exists(f"Results/{filepath}")
+    print(f"Testing: {info}") # Passes test
+
+    # Train the model with the dataset
+    model, test_dataloader, training_loss_data, validation_loss_data, precision_bc, recall_bc, f1_bc = train(
+        resnet_model=resnet_model, 
+        gpt2lmhead_model=gpt2lmhead_model, 
+        pretrained=pretrained, 
+        dataset=dataset
+    )
+    
+    # Saves loss graph, 5 image captions
+    show_results(
+        model=model, 
+        val_dataloader=test_dataloader, 
+        training_loss_data=training_loss_data, 
+        validation_loss_data=validation_loss_data, 
+        precision_bc=precision_bc,
+        recall_bc=recall_bc,
+        f1_bc=f1_bc,
+        info=info, 
+        filepath=filepath
+    ) 
+
+''' Resnet34, GPTLMHead, Training, Pretrained Weights '''
+def test4():
+    # Set model versions, pretrain condition, and dataset
+    resnet_model = "resnet34"
+    gpt2lmhead_model = "GPT2LMHeadModel"
+    pretrained = True
+    pretrained_str = "Pretrained" if pretrained else "Trained"
+    dataset = "dataset1"
+    filepath = "Test_4_Resnet34_GPTLMHead_Training_Pretrained Weights"
+    info = f"{resnet_model}, {gpt2lmhead_model}, {getDataSetName(dataset)}, {pretrained_str}" # Set results name
+
+    # Test if results folder already exists else end the program
+    directory_exists(f"Results/{filepath}")
+    print(f"Testing: {info}") # Passes test
+
+    # Train the model with the dataset
+    model, test_dataloader, training_loss_data, validation_loss_data, precision_bc, recall_bc, f1_bc = train(
+        resnet_model=resnet_model, 
+        gpt2lmhead_model=gpt2lmhead_model, 
+        pretrained=pretrained, 
+        dataset=dataset
+    )
+    
+    # Saves loss graph, 5 image captions
+    show_results(
+        model=model, 
+        val_dataloader=test_dataloader, 
+        training_loss_data=training_loss_data, 
+        validation_loss_data=validation_loss_data, 
+        precision_bc=precision_bc,
+        recall_bc=recall_bc,
+        f1_bc=f1_bc,
+        info=info, 
+        filepath=filepath
+    ) 
+
+''' Resnet34, GPTLMHead, No Training, Pretrained Weights '''
+def test5():
+    # Set model versions, pretrain condition, and dataset
+    resnet_model = "resnet34"
+    gpt2lmhead_model = "GPT2LMHeadModel"
+    pretrained = True
+    pretrained_str = "Pretrained" if pretrained else "Trained"
+    dataset = "dataset1"
+    filepath = "Test_5_Resnet34_GPTLMHead_No_Training_Pretrained Weights"
+    info = f"{resnet_model}, {gpt2lmhead_model}, {getDataSetName(dataset)}, {pretrained_str}" # Set results name
+
+    # Test if results folder already exists else end the program
+    directory_exists(f"Results/{filepath}")
+    print(f"Testing: {info}") # Passes test
+
+    ''' Load in ResNet and GPT2 model '''
+    resnet = getResNet(version=resnet_model, pretrained=pretrained).to(device)
+    resnet = nn.Sequential(*list(resnet.children())[:-2]) # Remove avg pool and fc layer
+    gpt2 = getGPT2LMHeadModel(version=gpt2lmhead_model, pretrained=pretrained).to(device)
+    
+    ''' Create Model with optimizer '''
+    model = ImageCaptioningModel(resnet, resnet_model, gpt2).to(device)
+
+    # Saves loss graph, 5 image captions
+    show_results_no_training(
+        model=model, 
+        dataset=dataset,
+        info=info, 
+        filepath=filepath
+    ) 
+
+''' Resnet34, GPTLMHead, Training, No Pretrained Weights '''
+def test6():
+    # Set model versions, pretrain condition, and dataset
+    resnet_model = "resnet34"
+    gpt2lmhead_model = "GPT2LMHeadModel"
+    pretrained = False
+    pretrained_str = "Pretrained" if pretrained else "Trained"
+    dataset = "dataset1"
+    filepath = "Test_6_Resnet34_GPTLMHead_Training_No_Pretrained Weights"
+    info = f"{resnet_model}, {gpt2lmhead_model}, {getDataSetName(dataset)}, {pretrained_str}" # Set results name
+
+    # Test if results folder already exists else end the program
+    directory_exists(f"Results/{filepath}")
+    print(f"Testing: {info}") # Passes test
+
+    # Train the model with the dataset
+    model, test_dataloader, training_loss_data, validation_loss_data, precision_bc, recall_bc, f1_bc = train(
+        resnet_model=resnet_model, 
+        gpt2lmhead_model=gpt2lmhead_model, 
+        pretrained=pretrained, 
+        dataset=dataset
+    )
+    
+    # Saves loss graph, 5 image captions
+    show_results(
+        model=model, 
+        val_dataloader=test_dataloader, 
+        training_loss_data=training_loss_data, 
+        validation_loss_data=validation_loss_data, 
+        precision_bc=precision_bc,
+        recall_bc=recall_bc,
+        f1_bc=f1_bc,
+        info=info, 
+        filepath=filepath
+    ) 
+
+def main():
+
+    ''' 
+    *** BEFORE RUNNING MAIN ***
+    Run data_install.py to locally store the datasets for testing
+    '''
+
+    '''
+    Valid train arguments - *** Case sensitive ***
+
+    Resnet Versions:    resnet18, resnet34, resnet50, resnet101, resnet152
+    GPT Versions:       GPT2LMHeadModel (PyTorch subclass), TFGPT2LMHeadModel (keras subclass), FlaxGPT2LMHeadModel (flax subclass)
+    pretrained:         True, False
+    dataset:            dataset1 (Flickr8kDataset)
+    '''
+
+    ''' Example training '''
+    # exampleTest()
+
+    ''' Research Paper Results '''
+
+    ''' Test 1: Resnet50, GPTLMHead, Training, Pretrained Weights '''
+    # test1()
+
+    ''' Test 2: Resnet50, GPTLMHead, ** No Training **, Pretrained Weights '''
+    # test2()
+
+    ''' Test 3: Resnet50, GPTLMHead, Training, No Pretrained Weights '''
+    test3()
+
+    ''' Test 4: Resnet34, GPTLMHead, Training, Pretrained Weights '''
+    # test4()
+
+    ''' Test 5: Resnet34, GPTLMHead, ** No Training **, Pretrained Weights '''
+    # test5()
+
+    ''' Test 6: Resnet34, GPTLMHead, Training, No Pretrained Weights '''
+    # test6()
+
+if __name__=="__main__":
+    main()

@@ -1,4 +1,3 @@
-**/__pycache__/
+__pycache__/
+Results/
 .venv/
-dataset/saved/dataset.npz
-out/final_model.pt

@@ -1,30 +1,26 @@
-from text.gpt2 import GPT
-from vision.resnet import Resnet
-import torch
 import torch.nn as nn
-import sys
 
-class VLM(nn.Module):
-    def __init__(self, vision_config, language_config):
-        ''' Layers: Resnet, Linear Projection, GPT '''
-        super().__init__()
-        self.vision_model = Resnet(vision_config) # Resnet
-        self.visual_proj = nn.Linear(vision_config.output_embed, language_config.embed_dim) # Linear projection: Image Embd (N, w' * h', image_dim) -> (N, seq_len, text_dim)
-        self.language_model = GPT(language_config) # GPT
-        self.language_config = language_config
+class ImageCaptioningModel(nn.Module):
+    def __init__(self, resnet, resnet_model, gpt2):
+        super(ImageCaptioningModel, self).__init__()
+        self.resnet = resnet
+        self.gpt2 = gpt2
 
-    def forward(self, image, starting_text, labels=None):
-        ''' Forward Pass: Resnet (transpose) -> Linear Projection (slice up to seq_len) -> GPT '''
-        image = self.vision_model(image).transpose(1, 2)  # Forward pass Resnet, transpose 
-        image_embeddings = self.visual_proj(image)[:, :self.language_config.seq_len]  # Linear projection, up to seq_len
-        x, loss = self.language_model(image_embeddings, starting_text, labels) # Forward pass GPT, returns logits, loss       
-        return x, loss
+        out_feature = 0
+        if resnet_model in ["resnet50", "resnet101", "resnet152"]:
+            out_feature = 2048
+        else:
+            out_feature = 512 # resnet18, resnet34
+        
+        self.proj = nn.Linear(out_feature, gpt2.config.hidden_size)
 
-    # Generates tokens, to decode and view the output in English. Inferencing
-    @torch.no_grad()
-    def generate(self, image, starting_text, max_new_tokens, temperature=1, do_sample=True, top_k=None):
-        ''' Forward Pass: Resnet (transpose) -> Linear Projection (slice up to seq_len) -> GPT generate '''
-        image = self.vision_model(image).transpose(1, 2)  # Forward pass Resnet, transpose 
-        image_embed = self.visual_proj(image)[:, :self.language_config.seq_len] # Linear projection, up to seq_len
-        x, new = self.language_model.generate(image_embed, starting_text, max_new_tokens, temperature, do_sample, top_k) # Generates predicted captions
-        return x, new
+    def forward(self, images, input_ids, attention_mask=None):
+        img_features = self.resnet(images)
+        img_features = img_features.mean([2,3])
+        img_features = self.proj(img_features)
+
+        input_embeddings = self.gpt2.transformer.wte(input_ids)
+        combined_embeddings =  input_embeddings + img_features.unsqueeze(1)
+
+        outputs = self.gpt2(inputs_embeds=combined_embeddings, attention_mask=attention_mask, labels=input_ids)
+        return outputs
