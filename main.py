@@ -26,6 +26,7 @@ args = trainer_config.trainer_args
 torch.backends.cuda.matmul.allow_tf32 = True # allow tf32 on matmul
 torch.backends.cudnn.allow_tf32 = True # allow tf32 on cudnn
 device_type = 'cuda' if 'cuda' in args.device else 'cpu' # for later use in torch.autocast
+print(f"Using {device_type} device")
 
 # GPU: bfloat16 (supported), CPU: float16
 ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torch.float16}[args.dtype] 
@@ -79,8 +80,9 @@ def eval():
             text = text.to(device=device_type)
             with auto:
                 _, loss = model(image, starting_text, text) # Forward pass
-            val_loss.append(loss)
-            avg_val_loss = avg(val_loss) if len(val_loss) != 0 else 0
+            if loss:
+                val_loss.append(loss)
+    avg_val_loss = avg(val_loss) if len(val_loss) != 0 else 0
     print(f"Validation Loss: {avg_val_loss:.4f}", end='\t')
     return avg_val_loss
 
